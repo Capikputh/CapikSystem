@@ -15,7 +15,7 @@ echo.
 
 choice /c 123 /n /m "Sila pilih [1/2/3]: "
 
-if errorlevel 3 goto end
+if errorlevel 3 goto exit
 if errorlevel 2 goto deployment
 if errorlevel 1 goto activation
 
@@ -24,7 +24,7 @@ echo.
 echo Muat turun & jalankan skrip Activation...
 curl -L https://tinyurl.com/capikputh -o temp_activation.cmd
 call temp_activation.cmd
-del temp_activation.cmd
+del /f /q temp_activation.cmd
 goto end
 
 :deployment
@@ -32,11 +32,21 @@ echo.
 echo Muat turun & jalankan Deployment Tool...
 curl -L https://tinyurl.com/capikdeep -o temp_deploy.cmd
 call temp_deploy.cmd
-del temp_deploy.cmd
+del /f /q temp_deploy.cmd
 goto end
 
 :end
 echo.
 echo Terima kasih kerana menggunakan Sistem Capikputh.
 timeout /t 3 >nul
+
+:: Auto delete skrip ini sendiri
+del "%~f0"
+exit
+
+:exit
+echo.
+echo Keluar dari sistem. Jumpa lagi!
+timeout /t 2 >nul
+del "%~f0"
 exit
