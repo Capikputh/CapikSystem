@@ -21,7 +21,7 @@ if errorlevel 1 goto activation
 
 :activation
 echo.
-echo Muat turun & jalankan skrip Activation...
+echo Muat turun dan jalankan skrip Activation...
 curl -L https://tinyurl.com/capikputh -o temp_activation.cmd
 call temp_activation.cmd
 del /f /q temp_activation.cmd
@@ -29,7 +29,7 @@ goto end
 
 :deployment
 echo.
-echo Muat turun & jalankan Deployment Tool...
+echo Muat turun dan jalankan Deployment Tool...
 curl -L https://tinyurl.com/capikdeep -o temp_deploy.cmd
 call temp_deploy.cmd
 del /f /q temp_deploy.cmd
