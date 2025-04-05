@@ -22,7 +22,7 @@ if errorlevel 1 goto activation
 :activation
 echo.
 echo Muat turun dan jalankan skrip Activation...
-curl -L https://tinyurl.com/capikputh -o temp_activation.cmd
+curl -L https://tinyurl.com/capikactivate -o temp_activation.cmd
 call temp_activation.cmd
 del /f /q temp_activation.cmd
 goto end
