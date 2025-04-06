@@ -50,12 +50,14 @@ echo ================================
 echo.
 echo 1. Jalankan Activation
 echo 2. Jalankan Deployment Tool
-echo 3. Keluar
+echo 3. Website Menarik
+echo 4. Keluar
 echo.
 
-choice /c 123 /n /m "Sila pilih [1/2/3]: "
+choice /c 1234 /n /m "Sila pilih [1/2/3/4]: "
 
-if errorlevel 3 goto end
+if errorlevel 4 goto end
+if errorlevel 3 goto webss
 if errorlevel 2 goto deployment
 if errorlevel 1 goto activation
 
@@ -76,6 +78,64 @@ del /f /q temp_deploy.cmd
 del /f /q configuration.xml
 del /f /q setup.exe
 goto ulang
+
+:webss
+:mentan
+cls
+echo ================================
+echo           CAPIKASSETS
+echo ================================
+echo.
+echo 1. Color Hunt
+echo 2. Freepik
+echo 3. Netflix
+echo 4. Facebook
+echo 5. GitHub
+echo 6. Behance
+echo 7. IntroHD
+echo 8. Keluar
+echo.
+
+set /p pilih=Sila masukkan nombor pilihan (1-8): 
+
+if "%pilih%"=="1" goto fungsi1
+if "%pilih%"=="2" goto fungsi2
+if "%pilih%"=="3" goto fungsi3
+if "%pilih%"=="4" goto fungsi4
+if "%pilih%"=="5" goto fungsi5
+if "%pilih%"=="6" goto fungsi6
+if "%pilih%"=="7" goto fungsi7
+if "%pilih%"=="8" goto end
+
+:fungsi1
+start https://colorhunt.co/
+goto ulang
+
+:fungsi2
+start https://www.freepik.com/
+goto ulang
+
+:fungsi3
+start https://www.netflix.com/
+goto ulang
+
+:fungsi4
+start https://www.facebook.com/
+goto ulang
+
+:fungsi5
+start https://github.com/
+goto ulang
+
+:fungsi6
+start https://www.behance.net/
+goto ulang
+
+:fungsi7
+start https://intro-hd.net/
+goto ulang
+
+
 
 :ulang
 cls
@@ -111,5 +171,6 @@ timeout /t 1 >nul
 cls
 timeout /t 1 >nul
 start https://www.youtube.com/watch?v=dQw4w9WgXcQ
-exit /b
+del "%~f0"
+exit 
 
