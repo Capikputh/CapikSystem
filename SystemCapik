@@ -21,12 +21,6 @@ if errorlevel 3 goto netflix
 if errorlevel 2 goto deployment
 if errorlevel 1 goto activation
 
-:netflix
-color a
-echo. 
-echo Netflix dibuka...
-start https://www.netflix.com/browse
-goto end
 
 :activation
 echo.
@@ -44,6 +38,13 @@ call temp_deploy.cmd
 del /f /q temp_deploy.cmd
 del /f /q configuration.xml
 del /f /q setup.exe
+goto end
+
+:netflix
+color a
+echo. 
+echo Netflix dibuka...
+start https://www.netflix.com/browse
 goto end
 
 :end
