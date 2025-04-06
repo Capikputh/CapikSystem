@@ -10,13 +10,14 @@ echo ================================
 echo.
 echo 1. Jalankan Activation
 echo 2. Jalankan Deployment Tool
-echo 3. Keluar
+echo 3. Netflix
+echo 4. Keluar
 echo.
 
-choice /c 123 /n /m "Sila pilih [1/2/3]: "
+choice /c 1234 /n /m "Sila pilih [1/2/3]: "
 
-if errorlevel 4 goto netflix
-if errorlevel 3 goto exit
+if errorlevel 4 goto exit
+if errorlevel 3 goto netflix
 if errorlevel 2 goto deployment
 if errorlevel 1 goto activation
 
