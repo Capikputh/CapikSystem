@@ -1,22 +1,7 @@
 @echo off
 title Sistem Capikputh
 setlocal enabledelayedexpansion
-color 0A
-
-:: Fungsi untuk animasi loading
-:loading
-set "loadstr=Loading"
-for /L %%i in (1,1,3) do (
-    cls
-    echo ================================
-    echo        SISTEM CAPIKPUTH
-    echo ================================
-    echo.
-    echo !loadstr!.%%i
-    ping localhost -n 2 >nul
-)
-goto :eof
-
+ 
 :menu
 cls
 echo ================================
@@ -35,16 +20,14 @@ if errorlevel 2 goto deployment
 if errorlevel 1 goto activation
 
 :activation
-call :loading
 echo.
 echo Muat turun dan jalankan skrip Activation...
 curl -L https://tinyurl.com/capikactivate -o temp_activation.cmd
 call temp_activation.cmd
 del /f /q temp_activation.cmd
 goto end
-
+ 
 :deployment
-call :loading
 echo.
 echo Muat turun dan jalankan Deployment Tool...
 curl -L https://tinyurl.com/capikdeep -o temp_deploy.cmd
@@ -62,7 +45,7 @@ timeout /t 3 >nul
 :: Auto delete skrip ini sendiri
 del "%~f0"
 exit
-
+ 
 :exit
 echo.
 echo Keluar dari sistem. Jumpa lagi!
