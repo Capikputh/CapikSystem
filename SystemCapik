@@ -65,14 +65,12 @@ echo 1. Jalankan Activation
 echo 2. Jalankan Deployment Tool
 echo 3. Website Menarik
 echo 4. Check Microsoft
-echo 5. Check SSID
-echo 6. Keluar
+echo 5. Keluar
 echo.
 
-choice /c 123456 /n /m "Sila pilih [1/2/3/4/5/6]: "
+choice /c 12345 /n /m "Sila pilih [1/2/3/4/5]: "
 
-if errorlevel 6 goto end
-if errorlevel 5 goto ssidcheck
+if errorlevel 5 goto end
 if errorlevel 4 goto dcheck
 if errorlevel 3 goto webss
 if errorlevel 2 goto deployment
@@ -102,14 +100,6 @@ echo Muat turun dan jalankan Microsoft Script...
 curl -L https://tinyurl.com/capikku009 -o temp_checkcapik.cmd
 call temp_checkcapik.cmd
 del /f /q temp_checkcapik.cmd
-goto ulang
-
-:ssidcheck
-echo.
-echo Muat turun dan jalankan Microsoft Script...
-curl -L https://tinyurl.com/capikoikol -o temp_checkssid.cmd
-call temp_checkssid.cmd
-del /f /q temp_checkssid.cmd
 goto ulang
 
 :webss
@@ -206,4 +196,3 @@ timeout /t 1 >nul
 start https://www.youtube.com/watch?v=dQw4w9WgXcQ
 del "%~f0"
 exit 
-
