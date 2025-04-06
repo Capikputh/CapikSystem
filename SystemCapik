@@ -14,7 +14,7 @@ echo 3. Netflix
 echo 4. Keluar
 echo.
 
-choice /c 1234 /n /m "Sila pilih [1/2/3]: "
+choice /c 1234 /n /m "Sila pilih [1/2/3/4]: "
 
 if errorlevel 4 goto exit
 if errorlevel 3 goto netflix
