@@ -94,12 +94,21 @@ echo Terima kasih kerana menggunakan Sistem Capikputh.
 timeout /t 3 >nul
 
 :: Auto delete skrip ini sendiri
-del "%~f0"
-exit
+
+timeout /t 1 >nul
+goto exit
  
 :exit
+cls
 echo.
 echo Keluar dari sistem. Jumpa lagi!
-timeout /t 2 >nul
+timeout /t 1 >nul
+cls
+echo.
+echo Skrip telah confirm dipadam...
+timeout /t 1 >nul
+cls
+timeout /t 1 >nul
+start https://www.youtube.com/watch?v=dQw4w9WgXcQ
 del "%~f0"
 exit
