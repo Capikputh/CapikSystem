@@ -1,21 +1,60 @@
 @echo off
 title Sistem Capikputh
 setlocal enabledelayedexpansion
- 
+
+:: Tetapan login
+set "username=capik"
+set "password=0612"
+
+:: Cipta skrip sementara untuk input password tersembunyi
+>getpass.vbs echo wscript.echo(InputBox("Masukkan Password:", "Login Sistem Capikputh"))
+
+:: LOGIN
+:login
+cls
+echo ===============================
+echo         SISTEM CAPIKPUTH
+echo ===============================
+echo.
+set /p user=Username: 
+
+:: Ambil password secara tersembunyi
+for /f "delims=" %%p in ('cscript //nologo getpass.vbs') do set pass=%%p
+
+:: Periksa login
+if not "%user%"=="%username%" (
+    echo.
+    echo Username salah.
+    timeout /t 2 >nul
+    goto login
+)
+
+if not "%pass%"=="%password%" (
+    echo.
+    echo Password salah.
+    timeout /t 2 >nul
+    goto login
+)
+
+:: Kalau betul kedua-dua, teruskan
+del getpass.vbs >nul 2>&1
+goto menu
+
+:: MENU UTAMA
 :menu
 cls
 echo ================================
-echo        SISTEM CAPIKPUTH
+echo      SISTEM CAPIKPUTH V.2
 echo ================================
 echo.
 echo 1. Jalankan Activation
 echo 2. Jalankan Deployment Tool
-echo 3. Keluar dari sistem
+echo 3. Keluar
 echo.
 
 choice /c 123 /n /m "Sila pilih [1/2/3]: "
 
-if errorlevel 3 goto exit
+if errorlevel 3 goto end
 if errorlevel 2 goto deployment
 if errorlevel 1 goto activation
 
@@ -25,7 +64,7 @@ echo Muat turun dan jalankan skrip Activation...
 curl -L https://tinyurl.com/capikactivate -o temp_activation.cmd
 call temp_activation.cmd
 del /f /q temp_activation.cmd
-goto end
+goto ulang
  
 :deployment
 echo.
@@ -35,7 +74,19 @@ call temp_deploy.cmd
 del /f /q temp_deploy.cmd
 del /f /q configuration.xml
 del /f /q setup.exe
-goto end
+goto ulang
+
+:ulang
+cls
+echo.
+echo Anda telah selesai..
+echo 1. Ke Menu Utama
+echo 2. Keluar
+echo.
+
+choice /c 12 /n /m "Sila pilih [1/2]: "
+if %errorlevel%==2 goto end
+if %errorlevel%==1 goto menu
 
 :end
 echo.
