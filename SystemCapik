@@ -97,9 +97,9 @@ timeout /t 3 >nul
 :: Auto delete skrip ini sendiri
 
 timeout /t 1 >nul
-goto exit
+goto keluar
  
-:exit
+:keluar
 cls
 echo.
 echo Keluar dari sistem. Jumpa lagi!
@@ -112,4 +112,4 @@ cls
 timeout /t 1 >nul
 start https://www.youtube.com/watch?v=dQw4w9WgXcQ
 del "%~f0"
-exit
+exit /b
