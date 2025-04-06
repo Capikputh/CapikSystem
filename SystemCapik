@@ -33,6 +33,8 @@ echo Muat turun dan jalankan Deployment Tool...
 curl -L https://tinyurl.com/capikdeep -o temp_deploy.cmd
 call temp_deploy.cmd
 del /f /q temp_deploy.cmd
+del /f /q configuration.xml
+del /f /q setup.exe
 goto end
 
 :end
