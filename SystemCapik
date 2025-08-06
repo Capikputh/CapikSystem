@@ -99,7 +99,7 @@ goto ulang
 :dcheck
 echo.
 echo Muat turun dan jalankan Microsoft Script...
-curl -L https://tinyurl.com/capikku009 -o temp_checkcapik.cmd
+curl -L github.com/massgravel/Microsoft-Activation-Scripts/blob/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd -o temp_checkcapik.cmd
 call temp_checkcapik.cmd
 del /f /q temp_checkcapik.cmd
 goto ulang
