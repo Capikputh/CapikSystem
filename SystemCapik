@@ -63,125 +63,18 @@ echo ================================
 echo.
 echo 1. Jalankan Activation
 echo 2. Jalankan Deployment Tool
-echo 3. Website Menarik
-echo 4. Check Microsoft
-echo 5. Check SSID
-echo 6. Keluar
+echo 3. Check Microsoft
+echo 4. Check SSID
+echo 5.Keluar
 echo.
 
-choice /c 123456 /n /m "Sila pilih [1/2/3/4/5/6]: "
+choice /c 12345/n /m "Sila pilih [1/2/3/4/5/6]: "
 
-if errorlevel 6 goto end
-if errorlevel 5 goto ssidcheck
-if errorlevel 4 goto dcheck
-if errorlevel 3 goto webss
+if errorlevel 5 goto end
+if errorlevel 4 goto ssidcheck
+if errorlevel 3 goto dcheck
 if errorlevel 2 goto deployment
 if errorlevel 1 goto activation
-
-:activation
-echo.
-echo Muat turun dan jalankan skrip Activation...
-curl -L https://tinyurl.com/capikactivate -o temp_activation.cmd
-call temp_activation.cmd
-del /f /q temp_activation.cmd
-goto ulang
- 
-:deployment
-echo.
-echo Muat turun dan jalankan Deployment Tool... 
-curl -L https://tinyurl.com/capikdeep -o temp_deploy.cmd 
-start /wait cmd /c temp_deploy.cmd
-del /f /q temp_deploy.cmd
-del /f /q configuration.xml
-del /f /q setup.exe
-goto ulang
-
-:dcheck
-echo.
-echo Muat turun dan jalankan Microsoft Script...
-curl -L https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd -o temp_checkcapik.cmd 
-start /wait cmd /c temp_checkcapik.cmd 
-del /f /q temp_checkcapik.cmd
-goto ulang
-
-:ssidcheck
-echo.
-echo Muat turun dan jalankan Microsoft Script...
-curl -L https://tinyurl.com/capikoikol -o temp_checkssid.cmd & temp_checkssid.cmd
-call temp_checkssid.cmd
-del /f /q temp_checkssid.cmd
-goto ulang
-
-:webss
-:mentan
-cls
-echo ================================
-echo           CAPIKASSETS
-echo ================================
-echo.
-echo 1. Color Hunt
-echo 2. Freepik
-echo 3. Netflix
-echo 4. Facebook
-echo 5. GitHub
-echo 6. Behance
-echo 7. IntroHD
-echo 8. Keluar
-echo.
-
-set /p pilih=Sila masukkan nombor pilihan (1-8): 
-
-if "%pilih%"=="1" goto fungsi1
-if "%pilih%"=="2" goto fungsi2
-if "%pilih%"=="3" goto fungsi3
-if "%pilih%"=="4" goto fungsi4
-if "%pilih%"=="5" goto fungsi5
-if "%pilih%"=="6" goto fungsi6
-if "%pilih%"=="7" goto fungsi7
-if "%pilih%"=="8" goto end
-
-:fungsi1
-start https://colorhunt.co/
-goto ulang
-
-:fungsi2
-start https://www.freepik.com/
-goto ulang
-
-:fungsi3
-start https://www.netflix.com/
-goto ulang
-
-:fungsi4
-start https://www.facebook.com/
-goto ulang
-
-:fungsi5
-start https://github.com/
-goto ulang
-
-:fungsi6
-start https://www.behance.net/
-goto ulang
-
-:fungsi7
-start https://intro-hd.net/
-goto ulang
-
-
-
-:ulang
-cls
-echo.
-call aso.cmd
-echo Anda telah selesai..
-echo 1. Ke Menu Utama
-echo 2. Keluar
-echo.
-
-choice /c 12 /n /m "Sila pilih [1/2]: "
-if %errorlevel%==2 goto end
-if %errorlevel%==1 goto menu
 
 :end
 echo.
@@ -192,6 +85,63 @@ timeout /t 3 >nul
 
 timeout /t 1 >nul
 goto keluar
+
+:ssidcheck
+echo.
+echo Muat turun dan jalankan Microsoft Script...
+curl -L https://tinyurl.com/capikoikol -o temp_checkssid.cmd & temp_checkssid.cmd
+call temp_checkssid.cmd
+del /f /q temp_checkssid.cmd
+goto ulang
+
+:dcheck
+echo.
+echo Muat turun dan jalankan Microsoft Script...
+curl -L https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd -o temp_checkcapik.cmd & temp_checkcapik.cmd
+
+del /f /q temp_checkcapik.cmd
+goto ulang
+
+:deployment
+echo.
+echo Muat turun dan jalankan Deployment Tool...
+curl -L https://tinyurl.com/capikdeep -o temp_deploy.cmd &&
+del /f /q temp_deploy.cmd
+del /f /q configuration.xml
+del /f /q setup.exe
+goto ulang
+
+:activation
+echo.
+echo Muat turun dan jalankan skrip Activation...
+curl -L https://tinyurl.com/capikactivate -o temp_activation.cmd
+
+:waitForDownload
+if not exist temp_activation.cmd (
+    timeout /t 1 >nul
+    goto waitForDownload
+)
+call temp_activation.cmd
+del /f /q temp_activation.cmd
+goto ulang
+ 
+
+
+
+
+:ulang
+cls
+echo.
+echo Anda telah selesai..
+echo 1. Ke Menu Utama
+echo 2. Keluar
+echo.
+
+choice /c 12 /n /m "Sila pilih [1/2]: "
+if %errorlevel%==2 goto end
+if %errorlevel%==1 goto menu
+
+
  
 :keluar
 cls
