@@ -86,6 +86,34 @@ timeout /t 3 >nul
 timeout /t 1 >nul
 goto keluar
 
+:ulang
+cls
+echo.
+echo Anda telah selesai..
+echo 1. Ke Menu Utama
+echo 2. Keluar
+echo.
+
+choice /c 12 /n /m "Sila pilih [1/2]: "
+if %errorlevel%==2 goto end
+if %errorlevel%==1 goto menu
+
+:keluar
+cls
+echo.
+echo Keluar dari sistem. Jumpa lagi!
+timeout /t 1 >nul
+cls
+echo.
+echo Skrip telah confirm dipadam...
+timeout /t 1 >nul
+cls
+timeout /t 1 >nul
+start https://www.youtube.com/watch?v=dQw4w9WgXcQ
+del "%~f0"
+exit 
+
+
 :ssidcheck
 echo.
 echo Muat turun dan jalankan Microsoft Script...
@@ -128,32 +156,4 @@ goto ulang
 
 
 
-
-:ulang
-cls
-echo.
-echo Anda telah selesai..
-echo 1. Ke Menu Utama
-echo 2. Keluar
-echo.
-
-choice /c 12 /n /m "Sila pilih [1/2]: "
-if %errorlevel%==2 goto end
-if %errorlevel%==1 goto menu
-
-
  
-:keluar
-cls
-echo.
-echo Keluar dari sistem. Jumpa lagi!
-timeout /t 1 >nul
-cls
-echo.
-echo Skrip telah confirm dipadam...
-timeout /t 1 >nul
-cls
-timeout /t 1 >nul
-start https://www.youtube.com/watch?v=dQw4w9WgXcQ
-del "%~f0"
-exit 
